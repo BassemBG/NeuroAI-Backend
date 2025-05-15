@@ -4,15 +4,16 @@ This project uses a **microservice architecture** to build an emotion recognitio
 
 Each microservice handles a specific use case, such as:
 
-- 🎤 Speech Emotion Recognition  
-- 👤 Facial Emotion Recognition  
-- 🧠 EEG Emotion Recognition  
+- 🎤 Speech Emotion Recognition
+- 👤 Facial Emotion Recognition
+- 🧠 EEG Emotion Recognition
 - ❤️ ECG Emotion Recognition
 
 ---
 
 ## 🧱 Project Structure
 
+```
 root/
 │
 ├── microservices/
@@ -23,6 +24,7 @@ root/
 ├── gateway/ # API gateway (user entry point)
 ├── docker-compose.yml # Runs all microservices together
 └── README.md
+```
 
 ---
 
@@ -30,13 +32,14 @@ root/
 
 - Each team member creates their **own Flask project** inside `microservices/`.
 - Each microservice has:
+
   - Its own `Dockerfile`
   - Its own `requirements.txt`
   - Its own `app.py`
-  - Optionally:  
-    - `models/` → for ML/DL models  
-    - `routes/` → for Flask routes  
-    - `tests/` → for unit or integration tests  
+  - Optionally:
+    - `models/` → for ML/DL models
+    - `routes/` → for Flask routes
+    - `tests/` → for unit or integration tests
 
 - All services are run together using `docker-compose.yml`.
 
@@ -82,7 +85,7 @@ services:
       context: ./microservices/service_a
     container_name: service_a_container
     ports:
-      - "5001:5000"  # Format: <host_port>:<container_port>
+      - "5001:5000" # Format: <host_port>:<container_port>
     volumes:
       - ./microservices/service_a:/app
 ```
