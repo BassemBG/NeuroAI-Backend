@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  gateway:
+    build:
+      context: ./gateway
+    container_name: gateway
+    ports:
+      - "7500:7085"
+    volumes:
+      - ./gateway:/app
+    depends_on:
+      - speech_emotion_microservice
+      - text_emotion_microservice
+
+  speech_emotion_microservice:
+    build:
+      context: ./microservices/speech_emotion_microservice
+    container_name: speech_emotion_microservice
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./microservices/speech_emotion_microservice:/app
+
+  text_emotion_microservice:
+    build:
+      context: ./microservices/text_emotion_microservice
+    container_name: text_emotion_microservice
+    ports:
+      - "5002:4000"
+    volumes:
+      - ./microservices/text_emotion_microservice:/app
