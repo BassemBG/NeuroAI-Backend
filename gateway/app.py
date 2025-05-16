@@ -19,7 +19,12 @@ def predict_text():
     print(response)
     return jsonify(response.json())
 
-
+@app.route("/predict/facial", methods=["GET"])
+def predict_facial():
+    #audio = request.files['file']
+    print("Received request for facial emotion prediction")
+    response = requests.get("http://facial_emotion_microservice:5000/predict")
+    return jsonify(response.json())
 
 
 if __name__ == "__main__":
