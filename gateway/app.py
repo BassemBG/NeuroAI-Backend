@@ -18,8 +18,11 @@ def predict_text():
     response = requests.get("http://text_emotion_microservice:4000/predict")
     print(response)
     return jsonify(response.json())
-
-
+#hejer
+@app.route("/predict/eeg-eog", methods=["POST"])
+def predict_eeg_eog():
+    response = requests.post("http://eeg_eog:5000/predict", json=request.get_json())
+    return jsonify(response.json())
 
 
 if __name__ == "__main__":
