@@ -25,6 +25,7 @@ venv/
 ENV/
 env/
 apiEnv/
+apiVenv/
 
 # IDEs and editors
 .idea/
