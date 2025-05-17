@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   gateway:
     build:
@@ -41,3 +39,12 @@ services:
       - "5003:5005"
     volumes:
       - ./microservices/eeg_keypress_microservice:/app
+
+  eeg_eog:
+      build:
+        context: ./microservices/eeg_eog
+      container_name: eeg_eog
+      ports:
+        - "5004:5000"  # Choose a unique host port
+      volumes:
+        - ./microservices/eeg_eog:/app
