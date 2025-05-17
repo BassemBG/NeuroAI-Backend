@@ -28,3 +28,12 @@ services:
       - "5002:4000"
     volumes:
       - ./microservices/text_emotion_microservice:/app
+
+  eeg_eog:
+      build:
+        context: ./microservices/eeg_eog
+      container_name: eeg_eog
+      ports:
+        - "5004:5000"  # Choose a unique host port
+      volumes:
+        - ./microservices/eeg_eog:/app
