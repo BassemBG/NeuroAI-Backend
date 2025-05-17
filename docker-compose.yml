@@ -10,6 +10,7 @@ services:
     depends_on:
       - speech_emotion_microservice
       - text_emotion_microservice
+      - eeg_keypress_microservice
 
   speech_emotion_microservice:
     build:
@@ -28,6 +29,16 @@ services:
       - "5002:4000"
     volumes:
       - ./microservices/text_emotion_microservice:/app
+
+  
+  eeg_keypress_microservice:
+    build:
+      context: ./microservices/eeg_keypress_microservice
+    container_name: eeg_keypress_microservice
+    ports:
+      - "5003:5005"
+    volumes:
+      - ./microservices/eeg_keypress_microservice:/app
 
   eeg_eog:
       build:
