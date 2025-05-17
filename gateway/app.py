@@ -1,26 +1,23 @@
 from flask import Flask, request, jsonify
-
 import requests
 
 app = Flask(__name__)
 
-@app.route("/predict/speech", methods=["GET"])
-def predict_speech():
-    #audio = request.files['file']
-    print("Received request for speech emotion prediction")
-    response = requests.get("http://speech_emotion_microservice:5000/predict")
-    return jsonify(response.json())
+@app.route("/predict/eeg-keypress", methods=["POST"])
+def predict_eeg_keypress():
+    try:
+        # Forward the incoming request's JSON to the microservice
+        response = requests.post(
+            "http://eeg_keypress_microservice:5005/predict", 
+            json=request.get_json()
+        )
+        
+        # Forward status and response
+        return (response.content, response.status_code, response.headers.items())
 
-@app.route("/predict/text", methods=["GET"])
-def predict_text():
-    print("Received request for text emotion prediction")
-    #text = request.json.get("text")
-    response = requests.get("http://text_emotion_microservice:4000/predict")
-    print(response)
-    return jsonify(response.json())
-
-
-
+    except requests.exceptions.RequestException as e:
+        print("Proxying eeg-keypress request to microservice failed. Exception:", e)
+        return jsonify({"error": "Failed to connect to microservice", "details": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=7085)
