@@ -26,6 +26,8 @@ ENV/
 env/
 apiEnv/
 ApiVenv310
+apiVenv/
+
 # IDEs and editors
 .idea/
 .vscode/

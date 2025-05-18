@@ -11,6 +11,7 @@ services:
       - speech_emotion_microservice
       - text_emotion_microservice
       - eeg_keypress_microservice
+      - facial_emotion_microservice
 
   speech_emotion_microservice:
     build:
@@ -29,6 +30,13 @@ services:
       - "5002:4000"
     volumes:
       - ./microservices/text_emotion_microservice:/app
+
+  facial_emotion_microservice:
+    build: ./microservices/Facial_emotion_microservice
+    ports:
+      - "5001:5001"  
+    volumes:
+      - ./microservices/facial_emotion_microservice:/app  
 
   
   eeg_keypress_microservice:
