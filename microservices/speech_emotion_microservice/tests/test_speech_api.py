@@ -16,7 +16,7 @@ def test_speech_emotion():
 
 
 def test_docker_container_speech_emotion():
-    url = "http://localhost:5001/api/speech/predict"
+    url = "http://localhost:5002/api/speech/predict"
     audio_path = "tests/test_input_data/short_audio_data/surprise.wav"  # Path to a short 2.5s test audio file
 
     if not os.path.exists(audio_path):
@@ -57,6 +57,6 @@ def test_sliding_window_speech_emotion():
 
 if __name__ == "__main__":
     #test_speech_emotion()
-    #test_docker_container_speech_emotion()
+    test_docker_container_speech_emotion()
     #test_sliding_window_speech_emotion()
     test_docker_gateway_container_speech_emotion()

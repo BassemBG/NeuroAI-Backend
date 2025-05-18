@@ -13,3 +13,6 @@ def test_speech_emotion():
         files = {"file": audio_file}
         response = requests.post(url, files=files)
         print("Single audio prediction:", response.json())
+        
+if __name__ == "__main__":
+    test_speech_emotion()
