@@ -3,7 +3,7 @@ import requests
 
 
 def test_facial_emotion():
-    url = "http://localhost:5000/api/facial/predict"
+    url = "http://localhost:7085/api/facial/predict"
     image_path = "../microservices/Facial_emotion_microservice/tests/image0000311.jpg"
 
     with open(image_path, "rb") as img:
