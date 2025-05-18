@@ -53,13 +53,6 @@ def predict_speech():
         return jsonify({"Gateway level error": str(e)}), 500
 
 
-@app.route("/predict/text", methods=["GET"])
-def predict_text():
-    print("Received request for text emotion prediction")
-    #text = request.json.get("text")
-    response = requests.get("http://text_emotion_microservice:4000/predict")
-    print(response)
-    return jsonify(response.json())
 #hejer
 @app.route("/predict/eeg-eog", methods=["POST"])
 def predict_eeg_eog():

@@ -9,7 +9,6 @@ services:
       - ./gateway:/app
     depends_on:
       - speech_emotion_microservice
-      - text_emotion_microservice
       - eeg_keypress_microservice
       - facial_emotion_microservice
       - eeg_eog
@@ -22,15 +21,6 @@ services:
       - "5001:5000"
     volumes:
       - ./microservices/speech_emotion_microservice:/app
-
-  text_emotion_microservice:
-    build:
-      context: ./microservices/text_emotion_microservice
-    container_name: text_emotion_microservice
-    ports:
-      - "5002:4000"
-    volumes:
-      - ./microservices/text_emotion_microservice:/app
 
   facial_emotion_microservice:
     build: ./microservices/Facial_emotion_microservice
