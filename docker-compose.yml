@@ -12,6 +12,7 @@ services:
       - text_emotion_microservice
       - eeg_keypress_microservice
       - facial_emotion_microservice
+      - eeg_eog
 
   speech_emotion_microservice:
     build:
