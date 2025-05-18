@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   gateway:
     build:
@@ -12,6 +10,7 @@ services:
     depends_on:
       - speech_emotion_microservice
       - text_emotion_microservice
+      - eeg_keypress_microservice
       - facial_emotion_microservice
 
   speech_emotion_microservice:
@@ -38,3 +37,22 @@ services:
       - "5001:5001"  
     volumes:
       - ./microservices/facial_emotion_microservice:/app  
+
+  
+  eeg_keypress_microservice:
+    build:
+      context: ./microservices/eeg_keypress_microservice
+    container_name: eeg_keypress_microservice
+    ports:
+      - "5003:5005"
+    volumes:
+      - ./microservices/eeg_keypress_microservice:/app
+
+  eeg_eog:
+      build:
+        context: ./microservices/eeg_eog
+      container_name: eeg_eog
+      ports:
+        - "5004:5000"  # Choose a unique host port
+      volumes:
+        - ./microservices/eeg_eog:/app
