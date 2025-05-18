@@ -42,7 +42,7 @@ def predict_speech():
     files = {"file": (file.filename, file.stream, file.mimetype)}
 
     try:
-        response = requests.post("http://speech_emotion_microservice:5000/api/speech/predict", files=files)
+        response = requests.post("http://speech_emotion_microservice:5010/api/speech/predict", files=files)
         
         if response.status_code != 200:
             return jsonify({"error": f"Speech microservice returned status code {response.status_code}", "details": response.text}), response.status_code
@@ -53,17 +53,10 @@ def predict_speech():
         return jsonify({"Gateway level error": str(e)}), 500
 
 
-@app.route("/predict/text", methods=["GET"])
-def predict_text():
-    print("Received request for text emotion prediction")
-    #text = request.json.get("text")
-    response = requests.get("http://text_emotion_microservice:4000/predict")
-    print(response)
-    return jsonify(response.json())
 #hejer
 @app.route("/predict/eeg-eog", methods=["POST"])
 def predict_eeg_eog():
-    response = requests.post("http://eeg_eog:5000/predict", json=request.get_json())
+    response = requests.post("http://eeg_eog:5000/api/eeg_eog/predict", json=request.get_json())
     return jsonify(response.json())
 
 @app.route("/predict/eeg-keypress", methods=["POST"])

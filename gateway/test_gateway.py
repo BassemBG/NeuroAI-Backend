@@ -12,7 +12,19 @@ def test_facial_emotion():
 
     print("Status:", response.status_code)
     print("Response:", response.json())
+    
+def test_gateway_facial_emotion():
+    url = "http://localhost:7500/api/facial/predict"
+    image_path = "../microservices/Facial_emotion_microservice/tests/image0000311.jpg"
+
+    with open(image_path, "rb") as img:
+        files = {"image": img}
+        response = requests.post(url, files=files)
+
+    print("Status:", response.status_code)
+    print("Response:", response.json())
 
 if __name__ == "__main__":
-    test_facial_emotion()
+    #test_facial_emotion()
+    test_gateway_facial_emotion()
 
