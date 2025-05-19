@@ -1,115 +1,81 @@
-# 🧠 Emotion Recognition Platform — Microservices Architecture
+# NeuroAI Backend
 
-The following project was developed as part of the coursework for AI project (ESE.INFIA0010) at Esprit school of engineering.
+This project is part of the NeuroAI platform, a multi-modal AI-powered backend designed to support psychiatric diagnosis through emotion recognition and subconscious analysis.  
+This project was developed as part of the coursework for **ESE.INFIA0010 - AI Project** at **Esprit School of Engineering**.
 
-It uses a **microservice architecture** to build an emotion recognition system with different independent services.
+![backend_system_design](assets/backend_system_design.jpeg)
 
-Each microservice handles a specific use case, such as:
+## Overview
 
-- 🎤 Speech Emotion Recognition
-- 👤 Facial Emotion Recognition
-- 🧠 EEG Emotion Recognition
-- ❤️ ECG Emotion Recognition
+NeuroAI Backend implements a **multi-container microservices architecture** in Docker to process real-time emotion detection and brain-to-text insights using Deep Learning models.  
+Each microservice is responsible for a distinct modality (EEG&EOG, EEG during activity, ECG, speech, facial, Brain-to-text), and all data is aggregated via a gateway for streamlined communication.
 
----
+## Features
 
-## 🧱 Project Structure
+- Multi-modal approach to emotion recognition
+- Dockerised Microservice architecture for portability, scalability and flexibility
+- Supports various emotion recognition modalities:
+  - 🎤 **Speech Emotion Recognition**
+  - 👤 **Facial Emotion Recognition**
+  - 🧠 **EEG&EOG Emotion Interpretation**
+  - ❤️ **ECG-Based Emotional Analysis**
+  - 🕹️ **Gaming-Stimulated EEG Emotion Tracking**
+- 🧠 **Brain-to-text interpretation using EEG signals**
 
-```
+## Tech Stack
+
+- **Backend**: Python, Flask.
+- **AI/ML**: TensorFlow, PyTorch, Deep Learning.
+- **Infrastructure**: Docker, Docker Compose, Reverse Proxy Gateway.
+- **Other Tools**: Postman, Jupyter Notebooks, ngrok.
+
+## Directory Structure
+
 root/
 │
 ├── microservices/
-│   ├── microservice_a/ # One use case (e.g. speech)
-│   ├── microservice_b/ # Another use case (e.g. facial)
-│   └── ...
+│ ├── microservice_a/ # One use case (e.g. speech)
+│ ├── microservice_b/ # Another use case (e.g. facial)
+│ └── ...
 │
 ├── gateway/ # API gateway (user entry point)
 ├── docker-compose.yml # Runs all microservices together
 └── README.md
-```
 
----
+## Getting Started
 
-## ⚙️ How It Works
+1. Clone the repository.
+2. Build and run all services: `docker-compose up --build`
+3. Use the API Gateway to make requests.
 
-- Each team member creates their **own Flask project** inside `microservices/`.
-- Each microservice has:
+## Usage
 
-  - Its own `Dockerfile`
-  - Its own `requirements.txt`
-  - Its own `app.py`
-  - Optionally:
-    - `models/` → for ML/DL models
-    - `routes/` → for Flask routes
-    - `tests/` → for unit or integration tests
+The gateway is a single entry point. It receives user requests and redirects them to the right microservice based on the endpoint path.
 
-- All services are run together using `docker-compose.yml`.
-
-- The **gateway** is a single entry point. It receives user requests and **redirects them to the right microservice** based on the endpoint path.
-
----
-
-## 🚀 Quick Start
-
-1. Clone the repo.
-2. Create your microservice inside `microservices/your_service_name/`.
-3. Build and run all services:
-
-```bash
-docker-compose up --build
-```
-
-Use the API Gateway to make requests. For example:
-
-### 🔄 Routing Example in the Gateway
-
-Here’s how to expose a new microservice in the gateway:
-
-```python
-@app.route("/predict/service-a", methods=["GET"])
-def predict_service_a():
-    print("Received request for Service A")
-    response = requests.get("http://service_a_container:5000/predict")
-    return jsonify(response.json())
-```
-
-`http://service_a_container:5000/`  
-Format: `http://<container_name>:<internal_port>/`
-
-### 📦 docker-compose.yml Snippet
-
-Here’s how to add a new microservice to docker-compose.yml:
-
-```yaml
-services:
-  service_a_container:
-    build:
-      context: ./microservices/service_a
-    container_name: service_a_container
-    ports:
-      - "5001:5000" # Format: <host_port>:<container_port>
-    volumes:
-      - ./microservices/service_a:/app
-```
-
-### 🧪 Local Development Tip
-
-You can test locally using virtualenv:
-
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-✅ Before building Docker, always update requirements.txt:
-
-```bash
-pip freeze > requirements.txt
-```
-
----
-
-## 🤝 Want to Contribute?
+## Contributing
 
 Check out `CONTRIBUTING.md` for guidelines.
+
+## Acknowledgments
+
+This project was developed as part of the coursework for AI project (ESE.INFIA0010) at Esprit School of Engineering.
+
+Special thanks to
+
+- **Prof. Sonia Mesbeh** (sonia.mesbeh@esprit.tn)
+- **Prof. Jihene Hlel** (jihene.hlel@esprit.tn)
+
+for their invaluable guidance from ideation and model training through to system architecture and deployment.
+
+## Topics
+
+- artificial-intelligence
+- deep-learning
+- machine-learning
+- data-analysis
+- web-development
+- python
+- flask
+- API
+- docker
+- containerization

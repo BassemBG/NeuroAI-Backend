@@ -58,6 +58,14 @@ services:
       - ./microservices/your_service_name:/app
 ```
 
+```yaml
+services:
+  gateway:
+    depends_on:
+      # Other containers here 
+      - service_a_container
+```
+
 ---
 
 ## 🚪 4. Connect Your Service to the Gateway
@@ -70,6 +78,10 @@ def predict():
     response = requests.get("http://your_service_name:5000/predict")
     return jsonify(response.json())
 ```
+
+`http://service_a_container:5000/`  
+Format: `http://<container_name>:<internal_port>/`
+
 
 ---
 
@@ -90,6 +102,25 @@ Check your endpoint via the gateway to ensure it's properly connected.
 - Keep code readable and well-commented.
 - Separate logic into files/folders when needed.
 - Use `.env` files if you need environment variables.
+
+### 🧪 Local Development Tip
+
+You can test locally using virtualenv:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+✅ Before building Docker, always update requirements.txt:
+
+```bash
+pip freeze > requirements.txt
+```
+
+---
+
 
 ---
 
