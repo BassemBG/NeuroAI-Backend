@@ -55,8 +55,8 @@ def test_api_eeg_eog():
 def test_gateway_api_eeg_eog():
     # Adjust this to point at your .mat files directory
     base_dir = Path(__file__).parent.parent / "models"
-    eeg_mat = base_dir / "19 eeg_features.mat"
-    eye_mat = base_dir / "19 eye_features.mat"
+    eeg_mat = base_dir / "1 eeg_features.mat"
+    eye_mat = base_dir / "1 eye_features.mat"
 
     # 1) Load .mat files
     mat_eeg = scipy.io.loadmat(str(eeg_mat))
@@ -103,4 +103,4 @@ def test_gateway_api_eeg_eog():
 
 if __name__ == "__main__":
     test_api_eeg_eog()
-    #test_gateway_api_eeg_eog()
+    test_gateway_api_eeg_eog()

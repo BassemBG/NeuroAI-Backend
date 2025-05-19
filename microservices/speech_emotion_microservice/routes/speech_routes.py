@@ -21,16 +21,26 @@ def predict_speech_emotion():
 
     filename = secure_filename(file.filename)
     filepath = os.path.join(UPLOAD_FOLDER, filename)
-    file.save(filepath)
+
+    print(f"[INFO] Saving uploaded file to {filepath}")
 
     try:
+        file.save(filepath)
+        print(f"[INFO] File saved. Now calling model on {filepath}")
+
         emotion = speech_model.predict(filepath)
+        print(f"[INFO] Model prediction: {emotion}")
+
         return jsonify({'emotion': emotion})
     except Exception as e:
+        import traceback
+        traceback.print_exc()  # Will show full traceback in Docker logs
         return jsonify({'error': str(e)}), 500
     finally:
         if os.path.exists(filepath):
             os.remove(filepath)
+            print(f"[INFO] File {filepath} deleted after prediction")
+
 
 # 2. For long audio with sliding window
 @speech_bp.route('/predict_sliding', methods=['POST'])
