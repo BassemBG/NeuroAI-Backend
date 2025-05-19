@@ -27,6 +27,7 @@ env/
 apiEnv/
 ApiVenv310
 apiVenv/
+ApiVenv/
 
 # IDEs and editors
 .idea/
