@@ -33,6 +33,7 @@ Each microservice is responsible for a distinct modality (EEG&EOG, EEG during ac
 
 ## Directory Structure
 
+```
 root/
 │
 ├── microservices/
@@ -43,6 +44,7 @@ root/
 ├── gateway/ # API gateway (user entry point)
 ├── docker-compose.yml # Runs all microservices together
 └── README.md
+```
 
 ## Getting Started
 
