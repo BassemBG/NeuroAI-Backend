@@ -3,7 +3,9 @@
 This project is part of the NeuroAI platform, a multi-modal AI-powered backend designed to support psychiatric diagnosis through emotion recognition and subconscious analysis.  
 This project was developed as part of the coursework for **ESE.INFIA0010 - AI Project** at **Esprit School of Engineering**.
 
-![backend_system_design](assets/backend_system_design.jpeg)
+<div align="center">
+<img src="assets/backend_system_design.jpeg" height="550" alt="backend_system_design">
+</div>
 
 ## Overview
 
