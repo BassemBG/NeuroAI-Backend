@@ -1,6 +1,8 @@
 # 🧠 Emotion Recognition Platform — Microservices Architecture
 
-This project uses a **microservice architecture** to build an emotion recognition system with different independent services.
+The following project was developed as part of the coursework for AI project (ESE.INFIA0010) at Esprit school of engineering.
+
+It uses a **microservice architecture** to build an emotion recognition system with different independent services.
 
 Each microservice handles a specific use case, such as:
 
